@@ -23,6 +23,12 @@ public interface CourseService {
     CourseVO getCourse(Integer courseId, Integer uid);
     // 创建课程
     ResultVO<CourseVO> createCourse(CourseVO courseVO);
+    // 获取课程点赞情况
+    ResultVO<CourseVO> getCourseLike(Integer uid, Integer courseId);
+    // 课程点赞
+    ResultVO<CourseVO> setCourseLike(Integer uid, Integer courseId);
+    // 取消课程点赞
+    ResultVO<CourseVO> cancelCourseLike(Integer uid, Integer courseId);
 
     Course getByPrimaryKey(Integer courseId);
 }

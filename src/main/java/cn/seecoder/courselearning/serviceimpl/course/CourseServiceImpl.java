@@ -126,4 +126,22 @@ public class CourseServiceImpl implements CourseService {
         return result;
     }
 
+    @Override
+    public ResultVO<CourseVO> setCourseLike(Integer uid, Integer course_id) {
+        courseLikesMapper.deleteByPrimaryKey(course_id, uid);
+        courseLikesMapper.insert(course_id, uid);
+        return new ResultVO<>(Constant.REQUEST_SUCCESS, "点赞成功");
+    }
+
+    @Override
+    public ResultVO<CourseVO> cancelCourseLike(Integer uid, Integer course_id) {
+        courseLikesMapper.deleteByPrimaryKey(course_id, uid);
+        return  new ResultVO<>(Constant.REQUEST_SUCCESS, "取消点赞");
+    }
+
+    @Override
+    public ResultVO<CourseVO> getCourseLike(Integer uid, Integer course_id) {
+        Integer liked = courseLikesMapper.count(course_id, uid);
+        return new ResultVO<>(liked, "点赞情况");
+    }
 }
